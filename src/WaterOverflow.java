@@ -6,15 +6,13 @@ public class WaterOverflow {
         int capacity = 255;
         int n = Integer.parseInt(sc.nextLine());
         int sum = 0;
-       boolean isCapacityTaken = false;
 
         for (int i = 0; i < n; i++) {
             int liters = Integer.parseInt(sc.nextLine());
-            sum += liters;
-            if (sum > capacity && !isCapacityTaken) {
+            if (sum + liters > capacity) {
                 System.out.println("Insufficient capacity!");
-                sum -= liters;
-                isCapacityTaken = true;
+            } else {
+                sum += liters;
             }
         }
         System.out.println(sum);
