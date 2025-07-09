@@ -19,7 +19,7 @@ public class ListManipulationBasics {
                     addNumberToList(numbers, number);
                     break;
                 case "Remove":
-                    removeNumberToList(numbers, number);
+                    removeNumberFromList(numbers, number);
                     break;
                 case "RemoveAt":
                     removeAtIndexFromList(numbers, number);
@@ -40,7 +40,7 @@ public class ListManipulationBasics {
         numbers.add(number);
     }
 
-    public static void removeNumberToList(List<Integer> numbers, int number) {
+    public static void removeNumberFromList(List<Integer> numbers, int number) {
         for (int i = 0; i < numbers.size(); i++) {
             if(number == numbers.get(i)){
                 numbers.remove(i);
