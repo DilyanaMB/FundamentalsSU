@@ -47,6 +47,7 @@ public class AnonymousThreat {
     }
 
     public static void divideValues(List<String> array, int index, int partitions) {
+       // TODO: fix the divide part (doesn't work')
         String word = array.get(index);
         int indexToAddOn = returnValidInex(array, index);
         String wordToAdd = "";
