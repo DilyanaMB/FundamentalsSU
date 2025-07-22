@@ -10,31 +10,32 @@ public class PokemonDontGo {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 
-        int sumOfElements=0;
-        for (int i = 0; i < distances.size(); i++) {
+        int sumOfElements = 0;
+
+        while (!distances.isEmpty()) {
             int index = Integer.parseInt(sc.nextLine());
-            if(distances.isEmpty()){
-                System.out.println(sumOfElements);
-                break;
-            }
+            int removedValue;
+
             if (index < 0) {
-                int lastElement = distances.get(distances.size() - 1);
-                sumOfElements+=distances.get(0);
+                removedValue = distances.get(0);
+                sumOfElements += removedValue;
                 distances.remove(0);
-                distances.add(0, lastElement);
+                distances.add(0, distances.get(distances.size() - 1));
+                increaseAllElements(distances, removedValue);
             } else if (index > distances.size() - 1) {
-                int firstElement = distances.get(0);
-                sumOfElements+=distances.get(distances.size()-1);
-                distances.remove(distances.size()-1);
-                distances.add(distances.size()-1,firstElement);
+                removedValue = distances.get(distances.size() - 1);
+                sumOfElements += removedValue;
+                distances.remove(distances.size() - 1);
+                distances.add(distances.get(0));
+                increaseAllElements(distances, removedValue);
             } else {
-                int valueToAdd = distances.get(index);
-                sumOfElements+=distances.get(index);
+                removedValue = distances.get(index);
+                sumOfElements += removedValue;
                 distances.remove(index);
-                increaseAllElements(distances, valueToAdd);
+                increaseAllElements(distances, removedValue);
             }
         }
-
+        System.out.println(sumOfElements);
     }
 
     public static void increaseAllElements(List<Integer> distances, int value) {
