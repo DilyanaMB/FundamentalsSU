@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -46,7 +47,7 @@ public class AnonymousThreat {
         }
     }
 
-    public static void divideValues(List<String> array, int index, int partitions) {
+   /* public static void divideValues(List<String> array, int index, int partitions) {
        // TODO: fix the divide part (doesn't work')
         String word = array.get(index);
         int indexToAddOn = returnValidInex(array, index);
@@ -61,7 +62,21 @@ public class AnonymousThreat {
 
             }
         }
-    }
+    }*/
+   public static void divideValues(List<String> array, int index, int partitions) {
+       String word = array.remove(index);
+       int partLength = word.length() / partitions;
+       int remainder = word.length() % partitions;
+       List<String> parts = new ArrayList<>();
+
+       int start = 0;
+       for (int i = 0; i < partitions; i++) {
+           int end = start + partLength + (i == partitions - 1 ? remainder : 0);
+           parts.add(word.substring(start, end));
+           start = end;
+       }
+       array.addAll(index, parts);
+   }
 
     public static int returnValidInex(List<String> array, int index) {
         if (index < 0) {
